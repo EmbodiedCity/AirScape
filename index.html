@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="zh" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirScape</title>
+    <link rel="icon" href="source/Embodied-R.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <style>
+        :root {
+            --primary-color: #3182ce;
+            --primary-color-rgb: 49, 130, 206;
+            --secondary-color: #2c5282;
+            --accent-color: #4299e1;
+            --text-color: #2d3748;
+            --bg-color: #f7fafc;
+            --bg-color-rgb: 247, 250, 252;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --highlight-bg: #fef9f9;
+            --highlight-border: #fadbd8;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --transition: all 0.3s ease;
+            --gradient-start: #9f7aea; /* 浅紫色 */
+            --gradient-end: #63b3ed; /* 浅蓝色 */
+            --primary-dark: #aac1ee; /* 浅蓝色 */
+            --secondary-dark: #f6c2ec; /* 浅粉色 */
+        }
+
+        .dark {
+            --primary-color: #63b3ed;
+            --primary-color-rgb: 99, 179, 237;
+            --secondary-color: #90cdf4;
+            --accent-color: #4299e1;
+            --text-color: #e2e8f0;
+            --bg-color: #1a202c;
+            --bg-color-rgb: 26, 32, 44;
+            --card-bg: #2d3748;
+            --border-color: #4a5568;
+            --highlight-bg: #3c2a2a;
+            --highlight-border: #742a2a;
+            --shadow: 0 4px 15px rgba(0,0,0,0.3);
+            --gradient-start: #b794f4; /* 浅紫色 */
+            --gradient-end: #90cdf4; /* 浅蓝色 */
+            --primary-dark: #aac1ee; /* 浅蓝色 */
+            --secondary-dark: #f6c2ec; /* 浅粉色 */
+        }
+
+        /* 阅读进度条样式 */
+        .reading-progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans SC', Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", Simsun, sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: var(--transition);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Serif SC', serif, 'SimHei', 'Microsoft YaHei', '黑体', '宋体';
+            font-weight: 600;
+            line-height: 1.4;
+            color: #1a202c;
+            transition: var(--transition);
+        }
+
+        .content-container {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            text-align: center !important;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid var(--border-color);
+            color: #1a202c;
+            transition: var(--transition);
+            line-height: 1.3;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #1a202c;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+            text-align: center !important;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .subsection-title {
+            font-size: 1.5rem;
+            color: #1a202c;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        p {
+            margin: 1rem 0;
+            font-size: 1.125rem;
+            text-align: justify;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 2rem auto;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.01);
+        }
+
+        /* 新的封面头部样式 */
+        .cover-header {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: none;
+            background-color: rgb(255, 255, 255);
+            z-index: 0;
+        }
+
+        .cover-header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 0.75rem;
+            padding: 0.9rem 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .icon-wrapper {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            line-height: 1.3;
+        }
+
+        .feature-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 添加一些工具类 */
+        .container {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .max-w-7xl {
+            max-width: 80rem;
+        }
+
+        .transform {
+            transform: translateZ(0);
+        }
+
+        .hover\:scale-102:hover {
+            transform: scale(1.02);
+        }
+
+        .transition-all {
+            transition-property: all;
+        }
+
+        .duration-500 {
+            transition-duration: 500ms;
+        }
+
+        .shadow-2xl {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+
+        .bg-gradient-to-b {
+            background-image: linear-gradient(to bottom, var(--primary-dark), var(--secondary-dark));
+        }
+
+        /* 波浪分隔线样式 */
+        .wave-divider {
+            position: relative;
+            height: 120px;
+            margin-top: -2px;
+            margin-bottom: -2px;
+            overflow: hidden;
+        }
+
+        .wave-divider svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .wave-path {
+            fill: var(--secondary-dark);
+            transition: fill 0.3s ease;
+        }
+
+        .dark .wave-path {
+            fill: var(--secondary-dark);
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .video-wrapper {
+            background-color: var(--card-bg);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .video-aspect-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+
+        .task-box {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .task-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .video-question-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .question-section {
+            margin-top: 1rem;
+            flex-grow: 1;
+            transition: var(--transition);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: rgba(var(--bg-color-rgb, 247, 250, 252), 0.5);
+        }
+
+        .question-section:hover {
+            background-color: rgba(var(--bg-color-rgb, 247, 250, 252), 0.8);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .question-section ul li {
+            transition: var(--transition);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-section ul li:hover {
+            background-color: rgba(var(--primary-color-rgb, 49, 130, 206), 0.1);
+            transform: translateX(5px);
+        }
+
+        .question-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .question-box {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .question-box h3 {
+            color: #1a202c;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            text-align: center !important;
+        }
+
+        .question-box p {
+            font-size: 1.1rem;
+            text-align: left;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .question-box ul {
+            list-style-type: none;
+            padding-left: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .question-box li {
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .question-box li:hover {
+            background-color: rgba(66, 153, 225, 0.1);
+        }
+
+        .method-section img,
+        .experiment-section img,
+        .further-exploration-section img {
+            max-width: 85%;
+            margin: 2.5rem auto;
+        }
+
+        .theme-toggle,
+        .back-to-top {
+            position: fixed;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .theme-toggle {
+            bottom: 2rem;
+            left: 2rem;
+        }
+
+        .back-to-top {
+            bottom: 2rem;
+            right: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .theme-toggle:hover,
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
+        .dark .main-title, .dark .section-title, .dark .subsection-title,
+        .dark .question-box h3 {
+            color: #f7fafc;
+        }
+
+        /* 封面样式在暗色模式下保持一致 */
+
+        /* 封面特性卡片样式在暗色模式下保持一致 */
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            padding: 0.75rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-100%);
+        }
+
+        .navbar.visible {
+            transform: translateY(0);
+        }
+
+        .dark .navbar {
+            background-color: rgba(26, 32, 44, 0.9);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #1a202c;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .dark .logo {
+            color: #f7fafc;
+        }
+
+        .logo-img {
+            height: 40px;
+            margin: 0 0.5rem 0 0;
+            display: inline-block;
+            vertical-align: middle;
+            box-shadow: none;
+            border-radius: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: #1a202c;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .dark .nav-links a {
+            color: #f7fafc;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #1a202c;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .dark .mobile-menu-btn {
+            color: #f7fafc;
+        }
+
+        /* 动效样式 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .stagger-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .highlight {
+            color: #e53e3e;
+            font-weight: bold;
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--highlight-bg);
+            border: 1px solid var(--highlight-border);
+            border-radius: 0.5rem;
+            margin: 2.5rem 0;
+            transition: var(--transition);
+        }
+
+        strong {
+            color: var(--secondary-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--card-bg);
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .content-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .subsection-title {
+                font-size: 1.3rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .video-container,
+            .question-container {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle,
+            .back-to-top {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+
+            .cover-header .flex {
+                flex-direction: column;
+            }
+
+            .cover-header .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .text-gradient {
+                font-size: 1.8rem;
+            }
+
+            .feature-card {
+                padding: 1rem;
+            }
+
+            .icon-wrapper {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        .affiliation-badge {
+            background-color: var(--bg-color);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .dark .affiliation-badge {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- 阅读进度条 -->
+    <div class="reading-progress-bar" id="reading-progress"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="source/logo.png" alt="Logo" class="logo-img">AirScape
+            </a>
+            <ul class="nav-links">
+                <li><a href="#task">Challenges</a></li>
+                <li><a href="#dataset">Dataset</a></li>
+                <li><a href="#method">Method</a></li>
+                <li><a href="#experiment">Experiment</a></li>
+                <li><a href="#citation">Citation</a></li>
+                <!-- <li><a href="#conclusion">Conclusion</a></li> -->
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <button class="theme-toggle" aria-label="Toggle dark/light mode">
+        <i class="fas fa-moon"></i>
+        <span class="fallback-icon" style="display:none;">🌙</span>
+    </button>
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+        <span class="fallback-icon" style="display:none;">⬆</span>
+    </button>
+
+    <!-- 封面设计 - 视频网格封面 -->
+    <header class="cover-header">
+        <!-- 添加Font Awesome图标库，确保图标可以正确加载 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- 添加Animate.css库 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+        <!-- 添加自定义样式 -->
+        <style>
+            /* 封面样式 - 不受暗色模式影响 */
+            .cover-header {
+                position: relative !important;
+                height: 100vh !important;
+                width: 100% !important;
+                overflow: hidden !important;
+                margin-bottom: 0 !important;
+                background-color: #000 !important;
+                display: block !important;
+            }
+
+            /* 强制显示所有图标 */
+            .fas, .fab, .ai {
+                display: inline-block !important;
+            }
+
+            /* 隐藏所有fallback图标 */
+            .fallback-icon {
+                display: none !important;
+            }
+
+            /* 视频格子铺满全屏无间隙 */
+            .video-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 25vw);  /* 每列25% */
+                grid-template-rows: repeat(3, 33.3333vh); /* 每行 1/3 */
+                width: 100vw;
+                height: 100vh;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+                grid-gap: 0;
+                background-color: #000;
+            }
+
+            .video-grid video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                border: none;
+                margin: 0;
+                padding: 0;
+                max-width: none;
+                box-shadow: none;
+                transition: none;
+                transform: none;
+                border-radius: 0;
+                position: relative;
+            }
+
+            .video-grid video:hover {
+                transform: none;
+            }
+
+            /* 灰色透明蒙版 - 不受暗色模式影响 */
+            .overlay {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                background-color: rgba(0, 0, 0, 0.5) !important;
+                z-index: 1 !important;
+            }
+
+            /* 居中文字 */
+            .text-container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                text-align: center;
+                color: white;
+                text-shadow: 0 0 10px black;
+                width: 90%;
+                max-width: 1200px;
+                font-family: 'Noto Serif SC', serif, 'SimHei', 'Microsoft YaHei', '黑体', '宋体';
+            }
+
+            .text-container h1 {
+                font-size: 4.5em;
+                margin-bottom: 0.3em;
+                font-weight: 700;
+                letter-spacing: 3px;
+                color: white;
+                line-height: 1.2;
+                text-shadow: 0 0 15px rgba(0,0,0,0.7);
+            }
+
+            .text-container .main-subtitle {
+                font-size: 1.8em;
+                white-space: nowrap;
+                margin: 0.2em 0;
+                font-weight: 500;
+                color: white;
+                line-height: 1.5;
+            }
+
+            .text-container p {
+                font-size: 1.2em;
+                margin: 0.3em 0;
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.5;
+            }
+
+            /* 特点容器样式 */
+            .features-container {
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                background-color: rgba(0, 0, 0, 0.4);
+                border-radius: 10px;
+                padding: 1.5rem;
+                backdrop-filter: blur(5px);
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .feature-item {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                text-align: left;
+                font-size: 1em;
+                margin: 0.25rem 0;
+            }
+
+            .feature-icon {
+                color: #3182ce;
+                font-size: 1.2em;
+                flex-shrink: 0;
+            }
+
+            .feature-item span {
+                font-weight: 600;
+                color: #63b3ed;
+            }
+
+            /* 按钮样式 */
+            .action-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+                margin-top: 2rem;
+                position: absolute;
+                bottom: 5%;
+                left: 0;
+                right: 0;
+                z-index: 3;
+            }
+
+            .action-button {
+                padding: 0.8rem 1.5rem;
+                border-radius: 50px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .action-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            /* 主图样式 */
+            .main-image-container {
+                position: relative;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                transition: all 0.3s ease;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                margin: 2rem auto;
+            }
+
+            .main-image-container:hover {
+                transform: scale(1.01);
+            }
+
+            .main-image {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            /* 响应式调整 */
+            @media (max-width: 768px) {
+                .text-container h1 {
+                    font-size: 2.5em;
+                }
+
+                .text-container .main-subtitle {
+                    font-size: 1.3em;
+                    white-space: normal;
+                }
+
+                .text-container p {
+                    font-size: 1em;
+                    white-space: normal;
+                }
+
+                .features-container {
+                    padding: 1rem;
+                    margin-top: 1.5rem;
+                }
+
+                .feature-item {
+                    font-size: 0.9em;
+                    gap: 0.5rem;
+                }
+
+                .action-button {
+                    padding: 0.7rem 1.2rem;
+                    font-size: 0.9rem;
+                }
+            }
+
+            /* 导航栏样式 - 滚动时显示 */
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                transform: translateY(-100%);
+            }
+
+            .navbar.visible {
+                transform: translateY(0);
+            }
+        </style>
+
+        <!-- 视频网格 -->
+        <div class="video-grid">
+            <!-- 12 视频 -->
+            <video src="source/videos/12.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/2.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/3.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/4.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/5.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/6.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/7.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/8.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/9.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/10.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/11.mp4" autoplay muted loop playsinline></video>
+            <video src="source/videos/1.mp4" autoplay muted loop playsinline></video>
+        </div>
+
+        <!-- 灰色蒙版 -->
+        <div class="overlay"></div>
+
+        <!-- 中间白字 -->
+        <div class="text-container text-center">
+            <h1 class="text-center">AirScape</h1>
+            <p class="text-center main-subtitle">An Aerial Generative World Model with Motion Controllability</p>
+            
+            <div class="features-container">
+                <p class="feature-item text-center"><i class="fas fa-helicopter feature-icon" style="color: #FFD700; font-weight: bold;"></i> <span style="color: #FFD700; font-weight: bold;">First Aerial World Model:</span> Pioneering 6DoF world model for aerial agents with motion controllability</p>
+                <p class="feature-item text-center"><i class="fas fa-database feature-icon" style="color: #FFD700; font-weight: bold;"></i> <span style="color: #FFD700; font-weight: bold;">11k Video-Intention Dataset:</span> First-person drone videos with annotated motion intentions across diverse scenarios</p>
+                <p class="feature-item text-center"><i class="fas fa-sync-alt feature-icon" style="color: #FFD700; font-weight: bold;"></i> <span style="color: #FFD700; font-weight: bold;">Two-Phase Training:</span> Self-play with VLM for learning spatio-temporal constraints</p>
+                <p class="feature-item text-center"><i class="fas fa-chart-line feature-icon" style="color: #FFD700; font-weight: bold;"></i> <span style="color: #FFD700; font-weight: bold;">Superior Performance:</span> 165.64% improvement in intention alignment over baselines</p>
+            </div>
+        </div>
+
+        <!-- 按钮区域 -->
+        <div class="action-buttons">
+            <a href="https://arxiv.org/abs/2504.12680" class="action-button">
+                <i class="ai ai-arxiv"></i>
+                <span>arXiv</span>
+            </a>
+            <a href="https://arxiv.org/pdf/2504.12680" class="action-button">
+                <i class="fas fa-file-pdf"></i>
+                <span>PDF</span>
+            </a>
+            <a href="https://github.com/EmbodiedCity/Embodied-R.code" class="action-button">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+            </a>
+        </div>
+    </header>
+
+
+
+    <div class="content-container" style="margin-top: 2rem; border-radius: 1rem;">
+
+        <div class="authors-section fade-in my-6">
+            <div class="flex flex-col items-center">
+                <div class="w-full max-w-5xl mx-auto text-center">
+                    <div class="text-xl mb-3 font-medium">
+                        <p class="mb-2 flex justify-center flex-wrap gap-x-2">
+                            <span class="author-name">Baining Zhao<sup>*</sup></span>,
+                            <span class="author-name">Rongze Tang<sup>*</sup></span>,
+                            <span class="author-name">Jiamingyuan<sup>*</sup></span>,
+                            <span class="author-name">Ziyou Wang<sup>*</sup></span>,
+                            <span class="author-name">Fanghang Man</span>
+                        </p>
+                        <p class="flex justify-center flex-wrap gap-x-2">
+                            <span class="author-name">Xin Zhang</span>,
+                            <span class="author-name">Yu Shang</span>,
+                            <span class="author-name">Weichen Zhang</span>,
+                            <a href="mailto:chgao96@gmail.com" class="author-link">Chen Gao<sup>†</sup></a>,
+                            <span class="author-name">Wei Wu</span>,
+                            <a href="mailto:chen.xinlei@sz.tsinghua.edu.cn" class="author-link">Xinlei Chen<sup>†</sup></a>,
+                            <span class="author-name">Yong Li</span>,
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="inline-block font-bold text-xl">
+                            <i class="fas fa-university text-primary-color mr-1"></i>
+                            <span>Tsinghua University</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="task" class="section-title text-center fade-in">Challenges</h2>
+        <img src="source/intro.png" alt="intro" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+
+        <p class="fade-in">
+            The paper addresses the fundamental problem of enabling robots to predict outcomes of their motion intentions in 3D space, specifically for six-degree-of-freedom (6DoF) aerial agents like drones. The main challenges include:
+        </p>
+        <p class="fade-in">
+            <strong>1. Lack of aerial datasets</strong>: Training world models requires firstperson perspective videos and corresponding textual prompts about aerial agents' actions or tasks. Existing datasets are either third-person views or ground-based perspectives from robots or vehicles.
+        </p>
+        <p class="fade-in">
+            <strong>2. Distribution gap</strong>: In terms of text input, existing open-source foundation models focus on generating videos from detailed textual descriptions, whereas world models rely on concise instructions or action intents. In terms of video, training data for open-source foundation models mostly consists of third-person videos with limited visual changes, while embodied first-person perspectives typically have narrower fields of view and larger visual changes, increasing training difficulty.
+        </p>
+        <p class="fade-in">
+            <strong>3. Generation diversity</strong>: Drones operate in 6DoF with high flexibility. Compared to ground vehicles, generated scenes include lateral translation, in-place rotation, camera gimbal adjustments, and combinations of multiple actions, making generation more challenging. The aerial spatial world model is required to simulate more complex changes in relative position, perspective variation, and parallax effects.
+        </p>
+
+
+        <template id="video-block">
+        <!-- 整合视频和问题的容器 -->
+        <div class="video-container mt-8">
+            <!-- 室外任务框 -->
+            <div class="video-wrapper task-box">
+                <h3 class="text-center text-xl font-semibold mb-3">Outdoor</h3>
+                <div class="video-question-container">
+                    <!-- 视频部分 -->
+                    <div class="video-aspect-wrapper">
+                        <video controls class="shadow-lg">
+                            <source src="source/videos/13.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <!-- 问题部分 -->
+                    <div class="question-section">
+                        <p>
+                            <strong>Question:</strong> Navigation Instruction given at initial position: [Observe around the square area, then fly towards the highway, then turn left and land on the roof of the building on the left]. You move according to a series of movement instructions. What are you doing now?
+                        </p>
+                        <ul class="mb-4">
+                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> A. I look around the square area.</li>
+                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> B. I turn left and land on the roof of the building on the left.</li>
+                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> C. I fly towards the road.</li>
+                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> D. I fly over the park.</li>
+                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> E. I land.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 室内任务框 -->
+            <div class="video-wrapper task-box">
+                <h3 class="text-center text-xl font-semibold mb-3">Indoor</h3>
+                <div class="video-question-container">
+                    <!-- 视频部分 -->
+                    <div class="video-aspect-wrapper">
+                        <video controls class="shadow-lg">
+                            <source src="source/videos/14.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <!-- 问题部分 -->
+                    <div class="question-section">
+                        <p>
+                            <strong>Question:</strong> What will be the first-time appearance order of the following categories in the video: table, backpack, trash bin, lamp?
+                        </p>
+                        <ul class="mb-4">
+                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> A. table, backpack, trash bin, lamp</li>
+                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> B. backpack, lamp, trash bin, table</li>
+                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> C. lamp, table, trash bin, backpack</li>
+                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> D. backpack, table, trash bin, lamp</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </template>
+
+
+        <h2 id="dataset" class="section-title text-center fade-in">Dataset</h2>
+        <img src="source/dataoverview.png" alt="intro" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+        <div class="method-section">
+            <p class="fade-in">
+                We present an 11k embodied aerial agent video dataset along with corresponding annotations of motion intention, aligning the inputs and outputs of the aerial world model. The proposed dataset exhibits diversity across multiple dimensions, including actions, areas, scenes, and tasks, as illustrated by the examples below.
+            </p>
+
+            <!-- Dataset Examples Section -->
+            <style>
+                .dataset-category {
+                margin-top: 3rem;
+                }
+                .dataset-category h3 {
+                text-align: center;
+                font-size: 1.75rem;
+                margin-bottom: 1.5rem;
+                }
+                .example-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+                }
+                .example-card {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+                overflow: hidden;
+                transition: transform 0.2s ease;
+                }
+                .example-card:hover {
+                transform: translateY(-5px);
+                }
+                .example-card img {
+                width: 100%;
+                display: block;
+                }
+                .example-card .card-content {
+                padding: 1rem;
+                }
+                .card-title {
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+                font-size: 1.1rem;
+                color: #444;
+                }
+                .card-desc {
+                font-size: 0.95rem;
+                color: #555;
+                line-height: 1.4;
+                }
+            </style>
+
+            <!-- Action -->
+            <div class="dataset-category fade-in">
+                <h3>Action</h3>
+                <div class="example-grid">
+                <div class="example-card">
+                    <img src="source/action/05638_WebUAV3M_train_minibus_9_1.gif" alt="Translation" />
+                    <div class="card-content">
+                    <div class="card-title">Translation</div>
+                    <div class="card-desc">The drone moves rightward while capturing a video of cars on the bridge, keeping it centered without gimbal adjustments.</div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="source/action/00001_urbanvideo_train.gif" alt="Rotation" />
+                    <div class="card-content">
+                    <div class="card-title">Rotation</div>
+                    <div class="card-desc">The drone rotates to the right and maintains a steady altitude and camera angle.</div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="source/action/00388_urbanvideo_train.gif" alt="Compound Movement" />
+                    <div class="card-content">
+                    <div class="card-title">Compound Movement</div>
+                    <div class="card-desc">The drone flies forward, adjusts gimbal downward for top-down view, stabilizing above the parking lot.</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Area -->
+            <div class="dataset-category fade-in">
+                <h3>Area</h3>
+                <div class="example-grid">
+                <div class="example-card">
+                    <img src="source/area/00109_urbanvideo_train.gif" alt="Roadside" />
+                    <div class="card-content">
+                    <div class="card-title">Roadside</div>
+                    <div class="card-desc">The drone maintains altitude, tilts gimbal down 45°, captures a descending view of a busy road and ends above it.</div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="source/area/05442_WebUAV3M_train_hot-air_balloon_83_0.gif" alt="Tourist Attraction" />
+                    <div class="card-content">
+                    <div class="card-title">Tourist Attraction</div>
+                    <div class="card-desc">The drone follows a red heart-shaped balloon while rotating left, without gimbal adjustment.</div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="source/area/05446_WebUAV3M_train_hotel_1_1.gif" alt="Seaside" />
+                    <div class="card-content">
+                    <div class="card-title">Seaside</div>
+                    <div class="card-desc">The drone flies forward keeping four buildings in view, no significant altitude or gimbal changes.</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Scene -->
+            <div class="dataset-category fade-in">
+                <h3>Scene</h3>
+                <div class="example-grid">
+                <div class="example-card">
+                    <img src="source/scene/01909_NAT2021_train_0138tricycle1_3_0.gif" alt="Night" />
+                    <div class="card-content">
+                    <div class="card-title">Night</div>
+                    <div class="card-desc">The drone flies forward focusing on the bridge and cars, keeping gimbal stable and centered.</div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="source/scene/04170_WebUAV3M_train_container_ship_11_5.gif" alt="Daytime" />
+                    <div class="card-content">
+                    <div class="card-title">Daytime</div>
+                    <div class="card-desc">The drone tracks a Maersk ship and a tugboat with slight gimbal adjustments to keep both in view.</div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="source/scene/09048_WebUAV3M_train_snowmobile_29_1.gif" alt="Snowy" />
+                    <div class="card-content">
+                    <div class="card-title">Snowy</div>
+                    <div class="card-desc">The drone flies upward and backward while rotating left, tracking a snowmobile near a forest.</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Task -->
+            <div class="dataset-category fade-in">
+                <h3>Task</h3>
+                <div class="example-grid">
+                <div class="example-card">
+                    <img src="source/task/00925_urbanvideo_test.gif" alt="Navigation" />
+                    <div class="card-content">
+                    <div class="card-title">Navigation</div>
+                    <div class="card-desc">The drone moves forward, turns right slightly, capturing commercial street view with buildings and pedestrians.</div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="source/task/04689_WebUAV3M_train_gaily-painted_pleasure-boat_10_2.gif" alt="Tracking" />
+                    <div class="card-content">
+                    <div class="card-title">Tracking</div>
+                    <div class="card-desc">The drone follows a boat on a river, adjusting position to keep the boat centered in view.</div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="source/task/08079_WebUAV3M_train_sedan_67_1.gif" alt="Detection" />
+                    <div class="card-content">
+                    <div class="card-title">Detection</div>
+                    <div class="card-desc">The drone flies forward while detecting and observing traffic flow on the road.</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+        <h2 id="method" class="section-title text-center fade-in">Method</h2>
+            <div class="method-section">
+                <p class="fade-in">
+                    We propose a two-phase training framework to build an aerial world model capable of predicting future observations based on current egocentric views and natural language motion intentions. The model is trained to generate physically plausible future video sequences in 6DoF space, reflecting both semantic intention and spatio-temporal consistency.
+                </p>
+                <img src="source/method.png" alt="Method Overview" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+
+                <h3 class="subsection-title fade-in">Phase 1: Learning Intention Controllability</h3>
+                <p class="fade-in">
+                    In the first phase, we perform supervised fine-tuning on a pre-trained video generation model using a dataset of paired aerial videos and their corresponding high-level textual motion intentions. This phase enables the model to understand and respond to concise, goal-oriented commands such as "The drone flies toward the blue building" as opposed to passive visual descriptions. By aligning the model's generative process with embodied control semantics, the foundation model begins to function as a predictive world model.
+                </p>
+                <p class="fade-in">
+                    Since aerial agents operate in 6DoF space involving translation, rotation, and gimbal changes, our dataset includes diverse scenarios to encourage robust intention understanding. The model learns to generate temporally coherent and spatially aligned video predictions based on the current visual input and a single-sentence motion command.
+                </p>
+
+                <h3 class="subsection-title fade-in">Phase 2: Learning Spatio-Temporal Constraints</h3>
+                <p class="fade-in">
+                    Despite initial fine-tuning, model outputs may still contain unrealistic or unstable predictions. To address this, we introduce a self-play strategy combined with large multimodal models (LMMs) to enforce physical consistency. This phase enhances the world model’s ability to generate high-fidelity video sequences by filtering synthetic generations through a rejection sampling mechanism.
+                </p>
+                <p class="fade-in">
+                    The process includes (a) sampling a current frame and generating a motion intention using LMMs, (b) producing candidate video predictions under that intention, and (c) evaluating them based on four criteria: intention alignment, spatial consistency, temporal continuity, and adherence to projective geometry. LMMs act as critics to select the most realistic prediction.
+                </p>
+                <p class="fade-in">
+                    Accepted video-intention pairs are collected into a synthetic dataset and used to further fine-tune the world model. This iterative loop improves the model’s capability to generate videos that not only match the intention but also obey real-world physical constraints, even in complex aerial scenes.
+                </p>
+            </div>
+
+        
+
+        <h2 id="experiment" class="section-title text-center fade-in">Experiment</h2>
+            <div class="experiment-section">
+
+                <h3 class="subsection-title fade-in">Experimental Setup</h3>
+                <p class="fade-in">
+                    We split the proposed dataset into training and testing sets in a 9:1 ratio. In Phase 1, we fine-tune the video generation model <strong>CogVideoX-i2v-5B</strong> with key hyperparameters: resolution of 49×480×720 (frames×height×width), batch size of 2, gradient accumulation steps of 8, and total 10 training epochs on 8 NVIDIA A800-SXM4-40GB GPUs. For Phase 2, we use <strong>Gemini-2.0-Flash</strong> as the vision-language model (VLM) to support the self-play process, due to its strong video understanding capability and fast inference.
+                </p>
+                <p class="fade-in">
+                    Evaluation metrics focus on both visual quality (FID, FVD) and semantic consistency between generated future observations and motion intentions. We report performance under three 6DoF motion types: Translation, Rotation, and Compound, along with the averaged results across all tasks.
+                </p>
+
+                <h3 class="subsection-title fade-in">RQ1: How does AirScape perform compared to prior methods?</h3>
+                <p class="fade-in">
+                    Quantitative results in the table below show that <strong>AirScape outperforms all baseline methods</strong> across key metrics. Compared with state-of-the-art models like Cosmos-Predict1-7B and HunyuanVideo-I2V, AirScape achieves improvements of +14.91% in FID, +14.63% in FVD, and +165.64% in IAR. Especially under the <em>Rotation</em> setting, which emphasizes physical consistency, AirScape significantly surpasses other approaches.
+                </p>
+                <img src="source/tab.png" alt="Comparison Results" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+
+                <h3 class="subsection-title fade-in">RQ2: Has AirScape Learned Spatio-Temporal Constraints?</h3>
+                <p class="fade-in">
+                    As shown in the case analysis below, AirScape produces physically plausible and intention-aligned video predictions, while baseline models often violate physical laws. For example, in cases of 6DoF motion, HunyuanVideo-I2V and Cosmos may generate distorted objects, unrealistic camera shifts, or discontinuous scenes. AirScape maintains stable depth, object continuity, and smooth transitions, indicating a robust understanding of spatio-temporal constraints learned via self-play.
+                </p>
+                <img src="source/case.png" alt="Case Analysis" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+
+                <h3 class="subsection-title fade-in">RQ3: What are the effects of the self-play mechanism?</h3>
+                <p class="fade-in">
+                    The self-play pipeline is key to injecting physical constraints into the model. For each sampled input, multiple video candidates are generated via prompt variation and random seeding. The VLM (e.g., Gemini-2.0-Flash) evaluates and selects the candidate that best aligns with the intended motion while satisfying spatio-temporal coherence. This mechanism filters low-quality generations and improves learning stability during fine-tuning.
+                </p>
+                <img src="source/self_play.png" alt="Self-Play Mechanism" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+
+                <h3 class="subsection-title fade-in">RQ4: What insights can we draw from the ablation studies?</h3>
+                <p class="fade-in">
+                    We conduct ablation analysis on three aspects:
+                </p>
+                <p class="fade-in">
+                    <strong>1.Effectiveness of Phase 2 Training:</strong> Without Phase 2 self-play, the model trained only in Phase 1 fails to enforce physical realism, producing visually pleasing yet unrealistic outputs. The full AirScape framework achieves significant accuracy improvements on all metrics, especially in IAR.
+                </p>
+                <p class="fade-in">
+                    <strong>2.Role of VLM Critic:</strong> Replacing the Gemini-based critic with a simpler evaluator degrades the alignment and consistency of predictions, confirming the importance of a strong semantic and temporal understanding module in self-play evaluation.
+                </p>
+                <p class="fade-in">
+                    <strong>3.Effect of Prompt Diversity:</strong> Reducing the number of rollouts or removing prompt augmentation leads to lower IAR and higher FVD, showing that diversity during sampling helps cover more valid future outcomes.
+                </p>
+            </div>
+
+        
+
+        <!-- <h2 id="conclusion" class="section-title text-center fade-in">Conclusion</h2>
+        <p class="fade-in">
+            To address embodied spatial reasoning tasks, we propose a collaborative framework that leverages the perceptual capabilities of large-scale VLMs and the reasoning potential of compact LMs. Through 90 hours of RL training on a 3B LM using 8 NVIDIA A800-SXM4-40GB GPUs, Embodied-R surpasses OpenAI-o1 by 13.9% and Gemini-2.5-Pro by 10.3% on the test set.
+        </p>
+        <p class="fade-in">
+            Other key findings include: (1) RL training leads to output length convergence, aligning with the requirements of the task; (2) the reasoning upper bound of same-scale VLMs trained with RL is significantly lower than that of Embodied-R, due to inherent limitations in perception; (3) the proposed logical consistency reward enhances reasoning quality; and (4) models trained via RL exhibit stronger generalization on out-of-distribution datasets compared to those trained with SFT.
+        </p> -->
+
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const htmlElement = document.documentElement;
+        const themeIcon = document.querySelector('.theme-toggle i');
+        const themeIconFallback = document.querySelector('.theme-toggle .fallback-icon');
+
+        // 检查Font Awesome是否加载成功
+        function checkFontAwesome() {
+            const spanFA = document.createElement('span');
+            spanFA.className = 'fa';
+            spanFA.style.display = 'none';
+            document.body.insertBefore(spanFA, document.body.firstChild);
+
+            const isFALoaded = window.getComputedStyle(spanFA).fontFamily.includes('FontAwesome');
+            document.body.removeChild(spanFA);
+
+            if (!isFALoaded) {
+                // 如果Font Awesome未加载，显示备用图标
+                document.querySelectorAll('.fallback-icon').forEach(el => {
+                    el.style.display = 'inline';
+                });
+                document.querySelectorAll('.fas').forEach(el => {
+                    el.style.display = 'none';
+                });
+
+                // 替换列表项的圆点图标
+                document.querySelectorAll('ul li .fas.fa-circle').forEach(el => {
+                    el.parentNode.innerHTML = '● ' + el.parentNode.innerHTML.replace(el.outerHTML, '');
+                });
+            }
+        }
+
+        // 页面加载后检查Font Awesome
+        window.addEventListener('load', checkFontAwesome);
+
+        // Check for system preference or saved preference
+        if (localStorage.getItem('theme') === 'dark' ||
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            themeIconFallback.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                themeIconFallback.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                themeIconFallback.textContent = '🌙';
+            }
+        });
+
+        // Back to top functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+
+            // 更新阅读进度条
+            updateReadingProgress();
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 移动端菜单切换
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // 如果在移动端，点击后关闭菜单
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // 滚动动效
+        function checkVisibility() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const staggerItems = document.querySelectorAll('.stagger-item');
+
+            fadeElements.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+
+            staggerItems.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, 100 * (index % 5)); // 每5个元素一组，错开显示时间
+                }
+            });
+        }
+
+        // 初始检查可见性
+        window.addEventListener('load', checkVisibility);
+        // 滚动时检查可见性
+        window.addEventListener('scroll', checkVisibility);
+
+        // 确保所有text-center类的元素都居中显示
+        function enforceTextCenter() {
+            document.querySelectorAll('.text-center').forEach(el => {
+                el.style.textAlign = 'center';
+            });
+
+            document.querySelectorAll('.main-title, .section-title, h3.text-center').forEach(el => {
+                el.style.textAlign = 'center';
+            });
+        }
+
+        // 初始检查可见性和样式
+        window.addEventListener('load', function() {
+            checkVisibility();
+            checkFontAwesome();
+            enforceTextCenter();
+            updateReadingProgress();
+        });
+
+        // 阅读进度条功能
+        function updateReadingProgress() {
+            const progressBar = document.getElementById('reading-progress');
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / totalHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // 控制导航栏显示
+            const navbar = document.querySelector('.navbar');
+            const coverHeader = document.querySelector('.cover-header');
+            const coverHeight = coverHeader.offsetHeight;
+
+            if (window.scrollY > coverHeight - 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        }
+
+        // 监听滚动事件以更新进度条和导航栏显示
+        window.addEventListener('scroll', updateReadingProgress);
+    </script>
+
+    <!-- 引用部分 -->
+    <div class="content-container" style="margin-top: 2rem; border-radius: 1rem;">
+        <h2 id="citation" class="section-title text-center fade-in">Citation</h2>
+        <div class="citation-section">
+            <pre style="background-color: var(--bg-color); padding: 1.5rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+@misc{zhao2025embodiedr,
+      title={Embodied-R: Collaborative Framework for Activating Embodied Spatial Reasoning in Foundation Models via Reinforcement Learning},
+      author={Baining Zhao and Ziyou Wang and Jianjie Fang and Chen Gao and Fanhang Man and Jinqiang Cui and Xin Wang and Xinlei Chen and Yong Li and Wenwu Zhu},
+      year={2025},
+      eprint={2504.12680},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2504.12680},
+}
+            </pre>
+        </div>
+    </div>
+</body>
+</html>
