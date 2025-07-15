@@ -1089,18 +1089,21 @@
         <!-- 视频网格 -->
         <div class="video-grid">
             <!-- 12 视频 -->
-            <video src="source/videos/12.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/2.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/3.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/4.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/5.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/6.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/7.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/8.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/9.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/10.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/11.mp4" autoplay muted loop playsinline></video>
-            <video src="source/videos/1.mp4" autoplay muted loop playsinline></video>
+            <video src="source\action\00001_urbanvideo_train.mp4" autoplay muted loop playsinline></video>
+            <video src="source\action\00388_urbanvideo_train.mp4" autoplay muted loop playsinline></video>
+            <video src="source\action\05638_WebUAV3M_train_minibus_9_1.mp4" autoplay muted loop playsinline></video>
+            <video src="source\area\00109_urbanvideo_train.mp4" autoplay muted loop playsinline></video>
+            <video src="source\area\05442_WebUAV3M_train_hot-air_balloon_83_0.mp4" autoplay muted loop
+                playsinline></video>
+            <video src="source\area\05446_WebUAV3M_train_hotel_1_1.mp4" autoplay muted loop playsinline></video>
+            <video src="source\scene\01909_NAT2021_train_0138tricycle1_3_0.mp4" autoplay muted loop playsinline></video>
+            <video src="source\scene\04170_WebUAV3M_train_container_ship_11_5.mp4" autoplay muted loop
+                playsinline></video>
+            <video src="source\scene\09048_WebUAV3M_train_snowmobile_29_1.mp4" autoplay muted loop playsinline></video>
+            <video src="source\task\00925_urbanvideo_test.mp4" autoplay muted loop playsinline></video>
+            <video src="source\task\04689_WebUAV3M_train_gaily-painted_pleasure-boat_10_2.mp4" autoplay muted loop
+                playsinline></video>
+            <video src="source\task\08079_WebUAV3M_train_sedan_67_1.mp4" autoplay muted loop playsinline></video>
         </div>
 
         <!-- 灰色蒙版 -->
@@ -1331,6 +1334,31 @@
                     display: block;
                 }
 
+                .example-card .video-aspect-wrapper {
+                    position: relative;
+                    padding-bottom: 56.25%;
+                    height: 0;
+                    overflow: hidden;
+                    margin-bottom: 0;
+                }
+
+                .example-card video {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 0;
+                    box-shadow: none;
+                    margin: 0;
+                    transition: transform 0.3s ease;
+                }
+
+                .example-card video:hover {
+                    transform: scale(1.01);
+                }
+
                 .example-card .card-content {
                     padding: 1rem;
                 }
@@ -1354,7 +1382,12 @@
                 <h3>Action</h3>
                 <div class="example-grid">
                     <div class="example-card">
-                        <img src="source/action/05638_WebUAV3M_train_minibus_9_1.gif" alt="Translation" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/action/05638_WebUAV3M_train_minibus_9_1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Translation</div>
                             <div class="card-desc">The drone moves rightward while capturing a video of cars on the
@@ -1362,7 +1395,12 @@
                         </div>
                     </div>
                     <div class="example-card">
-                        <img src="source/action/00001_urbanvideo_train.gif" alt="Rotation" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/action/00001_urbanvideo_train.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Rotation</div>
                             <div class="card-desc">The drone rotates to the right and maintains a steady altitude and
@@ -1370,7 +1408,12 @@
                         </div>
                     </div>
                     <div class="example-card">
-                        <img src="source/action/00388_urbanvideo_train.gif" alt="Compound Movement" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/action/00388_urbanvideo_train.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Compound Movement</div>
                             <div class="card-desc">The drone flies forward, adjusts gimbal downward for top-down view,
@@ -1385,7 +1428,12 @@
                 <h3>Area</h3>
                 <div class="example-grid">
                     <div class="example-card">
-                        <img src="source/area/00109_urbanvideo_train.gif" alt="Roadside" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/area/00109_urbanvideo_train.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Roadside</div>
                             <div class="card-desc">The drone maintains altitude, tilts gimbal down 45°, captures a
@@ -1393,7 +1441,13 @@
                         </div>
                     </div>
                     <div class="example-card">
-                        <img src="source/area/05442_WebUAV3M_train_hot-air_balloon_83_0.gif" alt="Tourist Attraction" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/area/05442_WebUAV3M_train_hot-air_balloon_83_0.mp4"
+                                    type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Tourist Attraction</div>
                             <div class="card-desc">The drone follows a red heart-shaped balloon while rotating left,
@@ -1401,7 +1455,12 @@
                         </div>
                     </div>
                     <div class="example-card">
-                        <img src="source/area/05446_WebUAV3M_train_hotel_1_1.gif" alt="Seaside" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/area/05446_WebUAV3M_train_hotel_1_1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Seaside</div>
                             <div class="card-desc">The drone flies forward keeping four buildings in view, no
@@ -1416,7 +1475,12 @@
                 <h3>Scene</h3>
                 <div class="example-grid">
                     <div class="example-card">
-                        <img src="source/scene/01909_NAT2021_train_0138tricycle1_3_0.gif" alt="Night" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/scene/01909_NAT2021_train_0138tricycle1_3_0.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Night</div>
                             <div class="card-desc">The drone flies forward focusing on the bridge and cars, keeping
@@ -1424,7 +1488,13 @@
                         </div>
                     </div>
                     <div class="example-card">
-                        <img src="source/scene/04170_WebUAV3M_train_container_ship_11_5.gif" alt="Daytime" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/scene/04170_WebUAV3M_train_container_ship_11_5.mp4"
+                                    type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Daytime</div>
                             <div class="card-desc">The drone tracks a Maersk ship and a tugboat with slight gimbal
@@ -1432,7 +1502,12 @@
                         </div>
                     </div>
                     <div class="example-card">
-                        <img src="source/scene/09048_WebUAV3M_train_snowmobile_29_1.gif" alt="Snowy" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/scene/09048_WebUAV3M_train_snowmobile_29_1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Snowy</div>
                             <div class="card-desc">The drone flies upward and backward while rotating left, tracking a
@@ -1447,7 +1522,12 @@
                 <h3>Task</h3>
                 <div class="example-grid">
                     <div class="example-card">
-                        <img src="source/task/00925_urbanvideo_test.gif" alt="Navigation" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/task/00925_urbanvideo_test.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Navigation</div>
                             <div class="card-desc">The drone moves forward, turns right slightly, capturing commercial
@@ -1455,8 +1535,13 @@
                         </div>
                     </div>
                     <div class="example-card">
-                        <img src="source/task/04689_WebUAV3M_train_gaily-painted_pleasure-boat_10_2.gif"
-                            alt="Tracking" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/task/04689_WebUAV3M_train_gaily-painted_pleasure-boat_10_2.mp4"
+                                    type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Tracking</div>
                             <div class="card-desc">The drone follows a boat on a river, adjusting position to keep the
@@ -1464,7 +1549,12 @@
                         </div>
                     </div>
                     <div class="example-card">
-                        <img src="source/task/08079_WebUAV3M_train_sedan_67_1.gif" alt="Detection" />
+                        <div class="video-aspect-wrapper">
+                            <video controls autoplay muted loop preload="metadata">
+                                <source src="source/task/08079_WebUAV3M_train_sedan_67_1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                         <div class="card-content">
                             <div class="card-title">Detection</div>
                             <div class="card-desc">The drone flies forward while detecting and observing traffic flow on
