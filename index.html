@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh" class="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AirScape</title>
-    <link rel="icon" href="source/Embodied-R.png" type="image/png">
+    <link rel="icon" href="source/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <style>
@@ -23,12 +25,16 @@
             --border-color: #e2e8f0;
             --highlight-bg: #fef9f9;
             --highlight-border: #fadbd8;
-            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             --transition: all 0.3s ease;
-            --gradient-start: #9f7aea; /* 浅紫色 */
-            --gradient-end: #63b3ed; /* 浅蓝色 */
-            --primary-dark: #aac1ee; /* 浅蓝色 */
-            --secondary-dark: #f6c2ec; /* 浅粉色 */
+            --gradient-start: #9f7aea;
+            /* 浅紫色 */
+            --gradient-end: #63b3ed;
+            /* 浅蓝色 */
+            --primary-dark: #aac1ee;
+            /* 浅蓝色 */
+            --secondary-dark: #f6c2ec;
+            /* 浅粉色 */
         }
 
         .dark {
@@ -43,11 +49,15 @@
             --border-color: #4a5568;
             --highlight-bg: #3c2a2a;
             --highlight-border: #742a2a;
-            --shadow: 0 4px 15px rgba(0,0,0,0.3);
-            --gradient-start: #b794f4; /* 浅紫色 */
-            --gradient-end: #90cdf4; /* 浅蓝色 */
-            --primary-dark: #aac1ee; /* 浅蓝色 */
-            --secondary-dark: #f6c2ec; /* 浅粉色 */
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            --gradient-start: #b794f4;
+            /* 浅紫色 */
+            --gradient-end: #90cdf4;
+            /* 浅蓝色 */
+            --primary-dark: #aac1ee;
+            /* 浅蓝色 */
+            --secondary-dark: #f6c2ec;
+            /* 浅粉色 */
         }
 
         /* 阅读进度条样式 */
@@ -74,7 +84,12 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Noto Serif SC', serif, 'SimHei', 'Microsoft YaHei', '黑体', '宋体';
             font-weight: 600;
             line-height: 1.4;
@@ -324,7 +339,7 @@
 
         .video-wrapper:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .video-aspect-wrapper {
@@ -354,7 +369,7 @@
 
         .task-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .video-question-container {
@@ -374,7 +389,7 @@
 
         .question-section:hover {
             background-color: rgba(var(--bg-color-rgb, 247, 250, 252), 0.8);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
 
         .question-section ul li {
@@ -409,7 +424,7 @@
 
         .question-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .question-box h3 {
@@ -467,7 +482,7 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             border: none;
             transition: var(--transition);
@@ -498,8 +513,15 @@
             transform: translateY(-3px);
         }
 
-        .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
-        .dark .main-title, .dark .section-title, .dark .subsection-title,
+        .dark h1,
+        .dark h2,
+        .dark h3,
+        .dark h4,
+        .dark h5,
+        .dark h6,
+        .dark .main-title,
+        .dark .section-title,
+        .dark .subsection-title,
         .dark .question-box h3 {
             color: #f7fafc;
         }
@@ -751,7 +773,7 @@
             background-color: var(--bg-color);
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: inline-block;
             font-size: 0.9rem;
             font-weight: 500;
@@ -765,6 +787,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 阅读进度条 -->
     <div class="reading-progress-bar" id="reading-progress"></div>
@@ -801,7 +824,8 @@
     <!-- 封面设计 - 视频网格封面 -->
     <header class="cover-header">
         <!-- 添加Font Awesome图标库，确保图标可以正确加载 -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- 添加Animate.css库 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
         <!-- 添加自定义样式 -->
@@ -818,7 +842,9 @@
             }
 
             /* 强制显示所有图标 */
-            .fas, .fab, .ai {
+            .fas,
+            .fab,
+            .ai {
                 display: inline-block !important;
             }
 
@@ -830,8 +856,10 @@
             /* 视频格子铺满全屏无间隙 */
             .video-grid {
                 display: grid;
-                grid-template-columns: repeat(4, 25vw);  /* 每列25% */
-                grid-template-rows: repeat(3, 33.3333vh); /* 每行 1/3 */
+                grid-template-columns: repeat(4, 25vw);
+                /* 每列25% */
+                grid-template-rows: repeat(3, 33.3333vh);
+                /* 每行 1/3 */
                 width: 100vw;
                 height: 100vh;
                 position: absolute;
@@ -898,7 +926,7 @@
                 letter-spacing: 3px;
                 color: white;
                 line-height: 1.2;
-                text-shadow: 0 0 15px rgba(0,0,0,0.7);
+                text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
             }
 
             .text-container .main-subtitle {
@@ -1082,18 +1110,30 @@
         <div class="text-container text-center">
             <h1 class="text-center">AirScape</h1>
             <p class="text-center main-subtitle">An Aerial Generative World Model with Motion Controllability</p>
-            
+
             <div class="features-container">
-                <p class="feature-item text-center"><i class="fas fa-helicopter feature-icon" style="color: #FFD700; font-weight: bold;"></i> <span style="color: #FFD700; font-weight: bold;">First Aerial World Model:</span> Pioneering 6DoF world model for aerial agents with motion controllability</p>
-                <p class="feature-item text-center"><i class="fas fa-database feature-icon" style="color: #FFD700; font-weight: bold;"></i> <span style="color: #FFD700; font-weight: bold;">11k Video-Intention Dataset:</span> First-person drone videos with annotated motion intentions across diverse scenarios</p>
-                <p class="feature-item text-center"><i class="fas fa-sync-alt feature-icon" style="color: #FFD700; font-weight: bold;"></i> <span style="color: #FFD700; font-weight: bold;">Two-Phase Training:</span> Self-play with VLM for learning spatio-temporal constraints</p>
-                <p class="feature-item text-center"><i class="fas fa-chart-line feature-icon" style="color: #FFD700; font-weight: bold;"></i> <span style="color: #FFD700; font-weight: bold;">Superior Performance:</span> 165.64% improvement in intention alignment over baselines</p>
+                <p class="feature-item text-center"><i class="fas fa-helicopter feature-icon"
+                        style="color: #FFD700; font-weight: bold;"></i> <span
+                        style="color: #FFD700; font-weight: bold;">First Aerial World Model:</span> Pioneering 6DoF
+                    world model for aerial agents with motion controllability</p>
+                <p class="feature-item text-center"><i class="fas fa-database feature-icon"
+                        style="color: #FFD700; font-weight: bold;"></i> <span
+                        style="color: #FFD700; font-weight: bold;">11k Video-Intention Dataset:</span> First-person
+                    drone videos with annotated motion intentions across diverse scenarios</p>
+                <p class="feature-item text-center"><i class="fas fa-sync-alt feature-icon"
+                        style="color: #FFD700; font-weight: bold;"></i> <span
+                        style="color: #FFD700; font-weight: bold;">Two-Phase Training:</span> Self-play with VLM for
+                    learning spatio-temporal constraints</p>
+                <p class="feature-item text-center"><i class="fas fa-chart-line feature-icon"
+                        style="color: #FFD700; font-weight: bold;"></i> <span
+                        style="color: #FFD700; font-weight: bold;">Superior Performance:</span> 165.64% improvement in
+                    intention alignment over baselines</p>
             </div>
         </div>
 
         <!-- 按钮区域 -->
         <div class="action-buttons">
-            <a href="https://arxiv.org/abs/2504.12680" class="action-button">
+            <a href="https://arxiv.org/abs/2507.08885" class="action-button">
                 <i class="ai ai-arxiv"></i>
                 <span>arXiv</span>
             </a>
@@ -1101,9 +1141,9 @@
                 <i class="fas fa-file-pdf"></i>
                 <span>PDF</span>
             </a>
-            <a href="https://github.com/EmbodiedCity/Embodied-R.code" class="action-button">
+            <a class="action-button" style="pointer-events: none; opacity: 0.8;">
                 <i class="fab fa-github"></i>
-                <span>Code</span>
+                <span>Code(release soon)</span>
             </a>
         </div>
     </header>
@@ -1129,7 +1169,8 @@
                             <span class="author-name">Weichen Zhang</span>,
                             <a href="mailto:chgao96@gmail.com" class="author-link">Chen Gao<sup>†</sup></a>,
                             <span class="author-name">Wei Wu</span>,
-                            <a href="mailto:chen.xinlei@sz.tsinghua.edu.cn" class="author-link">Xinlei Chen<sup>†</sup></a>,
+                            <a href="mailto:chen.xinlei@sz.tsinghua.edu.cn" class="author-link">Xinlei
+                                Chen<sup>†</sup></a>,
                             <span class="author-name">Yong Li</span>,
                         </p>
                     </div>
@@ -1145,130 +1186,166 @@
         </div>
 
         <h2 id="task" class="section-title text-center fade-in">Challenges</h2>
-        <img src="source/intro.png" alt="intro" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+        <img src="source/intro.png" alt="intro" class="fade-in"
+            style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
 
         <p class="fade-in">
-            The paper addresses the fundamental problem of enabling robots to predict outcomes of their motion intentions in 3D space, specifically for six-degree-of-freedom (6DoF) aerial agents like drones. The main challenges include:
+            The paper addresses the fundamental problem of enabling robots to predict outcomes of their motion
+            intentions in 3D space, specifically for six-degree-of-freedom (6DoF) aerial agents like drones. The main
+            challenges include:
         </p>
         <p class="fade-in">
-            <strong>1. Lack of aerial datasets</strong>: Training world models requires firstperson perspective videos and corresponding textual prompts about aerial agents' actions or tasks. Existing datasets are either third-person views or ground-based perspectives from robots or vehicles.
+            <strong>1. Lack of aerial datasets</strong>: Training world models requires firstperson perspective videos
+            and corresponding textual prompts about aerial agents' actions or tasks. Existing datasets are either
+            third-person views or ground-based perspectives from robots or vehicles.
         </p>
         <p class="fade-in">
-            <strong>2. Distribution gap</strong>: In terms of text input, existing open-source foundation models focus on generating videos from detailed textual descriptions, whereas world models rely on concise instructions or action intents. In terms of video, training data for open-source foundation models mostly consists of third-person videos with limited visual changes, while embodied first-person perspectives typically have narrower fields of view and larger visual changes, increasing training difficulty.
+            <strong>2. Distribution gap</strong>: In terms of text input, existing open-source foundation models focus
+            on generating videos from detailed textual descriptions, whereas world models rely on concise instructions
+            or action intents. In terms of video, training data for open-source foundation models mostly consists of
+            third-person videos with limited visual changes, while embodied first-person perspectives typically have
+            narrower fields of view and larger visual changes, increasing training difficulty.
         </p>
         <p class="fade-in">
-            <strong>3. Generation diversity</strong>: Drones operate in 6DoF with high flexibility. Compared to ground vehicles, generated scenes include lateral translation, in-place rotation, camera gimbal adjustments, and combinations of multiple actions, making generation more challenging. The aerial spatial world model is required to simulate more complex changes in relative position, perspective variation, and parallax effects.
+            <strong>3. Generation diversity</strong>: Drones operate in 6DoF with high flexibility. Compared to ground
+            vehicles, generated scenes include lateral translation, in-place rotation, camera gimbal adjustments, and
+            combinations of multiple actions, making generation more challenging. The aerial spatial world model is
+            required to simulate more complex changes in relative position, perspective variation, and parallax effects.
         </p>
 
 
         <template id="video-block">
-        <!-- 整合视频和问题的容器 -->
-        <div class="video-container mt-8">
-            <!-- 室外任务框 -->
-            <div class="video-wrapper task-box">
-                <h3 class="text-center text-xl font-semibold mb-3">Outdoor</h3>
-                <div class="video-question-container">
-                    <!-- 视频部分 -->
-                    <div class="video-aspect-wrapper">
-                        <video controls class="shadow-lg">
-                            <source src="source/videos/13.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <!-- 问题部分 -->
-                    <div class="question-section">
-                        <p>
-                            <strong>Question:</strong> Navigation Instruction given at initial position: [Observe around the square area, then fly towards the highway, then turn left and land on the roof of the building on the left]. You move according to a series of movement instructions. What are you doing now?
-                        </p>
-                        <ul class="mb-4">
-                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> A. I look around the square area.</li>
-                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> B. I turn left and land on the roof of the building on the left.</li>
-                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> C. I fly towards the road.</li>
-                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> D. I fly over the park.</li>
-                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> E. I land.</li>
-                        </ul>
+            <!-- 整合视频和问题的容器 -->
+            <div class="video-container mt-8">
+                <!-- 室外任务框 -->
+                <div class="video-wrapper task-box">
+                    <h3 class="text-center text-xl font-semibold mb-3">Outdoor</h3>
+                    <div class="video-question-container">
+                        <!-- 视频部分 -->
+                        <div class="video-aspect-wrapper">
+                            <video controls class="shadow-lg">
+                                <source src="source/videos/13.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <!-- 问题部分 -->
+                        <div class="question-section">
+                            <p>
+                                <strong>Question:</strong> Navigation Instruction given at initial position: [Observe
+                                around the square area, then fly towards the highway, then turn left and land on the
+                                roof of the building on the left]. You move according to a series of movement
+                                instructions. What are you doing now?
+                            </p>
+                            <ul class="mb-4">
+                                <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> A. I look around the
+                                    square area.</li>
+                                <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> B. I turn left and land on
+                                    the roof of the building on the left.</li>
+                                <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> C. I fly towards the road.
+                                </li>
+                                <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> D. I fly over the park.
+                                </li>
+                                <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> E. I land.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- 室内任务框 -->
-            <div class="video-wrapper task-box">
-                <h3 class="text-center text-xl font-semibold mb-3">Indoor</h3>
-                <div class="video-question-container">
-                    <!-- 视频部分 -->
-                    <div class="video-aspect-wrapper">
-                        <video controls class="shadow-lg">
-                            <source src="source/videos/14.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    <!-- 问题部分 -->
-                    <div class="question-section">
-                        <p>
-                            <strong>Question:</strong> What will be the first-time appearance order of the following categories in the video: table, backpack, trash bin, lamp?
-                        </p>
-                        <ul class="mb-4">
-                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> A. table, backpack, trash bin, lamp</li>
-                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> B. backpack, lamp, trash bin, table</li>
-                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> C. lamp, table, trash bin, backpack</li>
-                            <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> D. backpack, table, trash bin, lamp</li>
-                        </ul>
+                <!-- 室内任务框 -->
+                <div class="video-wrapper task-box">
+                    <h3 class="text-center text-xl font-semibold mb-3">Indoor</h3>
+                    <div class="video-question-container">
+                        <!-- 视频部分 -->
+                        <div class="video-aspect-wrapper">
+                            <video controls class="shadow-lg">
+                                <source src="source/videos/14.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <!-- 问题部分 -->
+                        <div class="question-section">
+                            <p>
+                                <strong>Question:</strong> What will be the first-time appearance order of the following
+                                categories in the video: table, backpack, trash bin, lamp?
+                            </p>
+                            <ul class="mb-4">
+                                <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> A. table, backpack, trash
+                                    bin, lamp</li>
+                                <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> B. backpack, lamp, trash
+                                    bin, table</li>
+                                <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> C. lamp, table, trash bin,
+                                    backpack</li>
+                                <li><i class="fas fa-circle mr-2 text-black-500 text-xs"></i> D. backpack, table, trash
+                                    bin, lamp</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </template>
 
 
         <h2 id="dataset" class="section-title text-center fade-in">Dataset</h2>
-        <img src="source/dataoverview.png" alt="intro" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+        <img src="source/dataoverview.png" alt="intro" class="fade-in"
+            style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
         <div class="method-section">
             <p class="fade-in">
-                We present an 11k embodied aerial agent video dataset along with corresponding annotations of motion intention, aligning the inputs and outputs of the aerial world model. The proposed dataset exhibits diversity across multiple dimensions, including actions, areas, scenes, and tasks, as illustrated by the examples below.
+                We present an 11k embodied aerial agent video dataset along with corresponding annotations of motion
+                intention, aligning the inputs and outputs of the aerial world model. The proposed dataset exhibits
+                diversity across multiple dimensions, including actions, areas, scenes, and tasks, as illustrated by the
+                examples below.
             </p>
 
             <!-- Dataset Examples Section -->
             <style>
                 .dataset-category {
-                margin-top: 3rem;
+                    margin-top: 3rem;
                 }
+
                 .dataset-category h3 {
-                text-align: center;
-                font-size: 1.75rem;
-                margin-bottom: 1.5rem;
+                    text-align: center;
+                    font-size: 1.75rem;
+                    margin-bottom: 1.5rem;
                 }
+
                 .example-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 2rem;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                    gap: 2rem;
                 }
+
                 .example-card {
-                background: white;
-                border-radius: 12px;
-                box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-                overflow: hidden;
-                transition: transform 0.2s ease;
+                    background: white;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+                    overflow: hidden;
+                    transition: transform 0.2s ease;
                 }
+
                 .example-card:hover {
-                transform: translateY(-5px);
+                    transform: translateY(-5px);
                 }
+
                 .example-card img {
-                width: 100%;
-                display: block;
+                    width: 100%;
+                    display: block;
                 }
+
                 .example-card .card-content {
-                padding: 1rem;
+                    padding: 1rem;
                 }
+
                 .card-title {
-                font-weight: bold;
-                margin-bottom: 0.5rem;
-                font-size: 1.1rem;
-                color: #444;
+                    font-weight: bold;
+                    margin-bottom: 0.5rem;
+                    font-size: 1.1rem;
+                    color: #444;
                 }
+
                 .card-desc {
-                font-size: 0.95rem;
-                color: #555;
-                line-height: 1.4;
+                    font-size: 0.95rem;
+                    color: #555;
+                    line-height: 1.4;
                 }
             </style>
 
@@ -1276,27 +1353,30 @@
             <div class="dataset-category fade-in">
                 <h3>Action</h3>
                 <div class="example-grid">
-                <div class="example-card">
-                    <img src="source/action/05638_WebUAV3M_train_minibus_9_1.gif" alt="Translation" />
-                    <div class="card-content">
-                    <div class="card-title">Translation</div>
-                    <div class="card-desc">The drone moves rightward while capturing a video of cars on the bridge, keeping it centered without gimbal adjustments.</div>
+                    <div class="example-card">
+                        <img src="source/action/05638_WebUAV3M_train_minibus_9_1.gif" alt="Translation" />
+                        <div class="card-content">
+                            <div class="card-title">Translation</div>
+                            <div class="card-desc">The drone moves rightward while capturing a video of cars on the
+                                bridge, keeping it centered without gimbal adjustments.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="example-card">
-                    <img src="source/action/00001_urbanvideo_train.gif" alt="Rotation" />
-                    <div class="card-content">
-                    <div class="card-title">Rotation</div>
-                    <div class="card-desc">The drone rotates to the right and maintains a steady altitude and camera angle.</div>
+                    <div class="example-card">
+                        <img src="source/action/00001_urbanvideo_train.gif" alt="Rotation" />
+                        <div class="card-content">
+                            <div class="card-title">Rotation</div>
+                            <div class="card-desc">The drone rotates to the right and maintains a steady altitude and
+                                camera angle.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="example-card">
-                    <img src="source/action/00388_urbanvideo_train.gif" alt="Compound Movement" />
-                    <div class="card-content">
-                    <div class="card-title">Compound Movement</div>
-                    <div class="card-desc">The drone flies forward, adjusts gimbal downward for top-down view, stabilizing above the parking lot.</div>
+                    <div class="example-card">
+                        <img src="source/action/00388_urbanvideo_train.gif" alt="Compound Movement" />
+                        <div class="card-content">
+                            <div class="card-title">Compound Movement</div>
+                            <div class="card-desc">The drone flies forward, adjusts gimbal downward for top-down view,
+                                stabilizing above the parking lot.</div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
 
@@ -1304,27 +1384,30 @@
             <div class="dataset-category fade-in">
                 <h3>Area</h3>
                 <div class="example-grid">
-                <div class="example-card">
-                    <img src="source/area/00109_urbanvideo_train.gif" alt="Roadside" />
-                    <div class="card-content">
-                    <div class="card-title">Roadside</div>
-                    <div class="card-desc">The drone maintains altitude, tilts gimbal down 45°, captures a descending view of a busy road and ends above it.</div>
+                    <div class="example-card">
+                        <img src="source/area/00109_urbanvideo_train.gif" alt="Roadside" />
+                        <div class="card-content">
+                            <div class="card-title">Roadside</div>
+                            <div class="card-desc">The drone maintains altitude, tilts gimbal down 45°, captures a
+                                descending view of a busy road and ends above it.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="example-card">
-                    <img src="source/area/05442_WebUAV3M_train_hot-air_balloon_83_0.gif" alt="Tourist Attraction" />
-                    <div class="card-content">
-                    <div class="card-title">Tourist Attraction</div>
-                    <div class="card-desc">The drone follows a red heart-shaped balloon while rotating left, without gimbal adjustment.</div>
+                    <div class="example-card">
+                        <img src="source/area/05442_WebUAV3M_train_hot-air_balloon_83_0.gif" alt="Tourist Attraction" />
+                        <div class="card-content">
+                            <div class="card-title">Tourist Attraction</div>
+                            <div class="card-desc">The drone follows a red heart-shaped balloon while rotating left,
+                                without gimbal adjustment.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="example-card">
-                    <img src="source/area/05446_WebUAV3M_train_hotel_1_1.gif" alt="Seaside" />
-                    <div class="card-content">
-                    <div class="card-title">Seaside</div>
-                    <div class="card-desc">The drone flies forward keeping four buildings in view, no significant altitude or gimbal changes.</div>
+                    <div class="example-card">
+                        <img src="source/area/05446_WebUAV3M_train_hotel_1_1.gif" alt="Seaside" />
+                        <div class="card-content">
+                            <div class="card-title">Seaside</div>
+                            <div class="card-desc">The drone flies forward keeping four buildings in view, no
+                                significant altitude or gimbal changes.</div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
 
@@ -1332,27 +1415,30 @@
             <div class="dataset-category fade-in">
                 <h3>Scene</h3>
                 <div class="example-grid">
-                <div class="example-card">
-                    <img src="source/scene/01909_NAT2021_train_0138tricycle1_3_0.gif" alt="Night" />
-                    <div class="card-content">
-                    <div class="card-title">Night</div>
-                    <div class="card-desc">The drone flies forward focusing on the bridge and cars, keeping gimbal stable and centered.</div>
+                    <div class="example-card">
+                        <img src="source/scene/01909_NAT2021_train_0138tricycle1_3_0.gif" alt="Night" />
+                        <div class="card-content">
+                            <div class="card-title">Night</div>
+                            <div class="card-desc">The drone flies forward focusing on the bridge and cars, keeping
+                                gimbal stable and centered.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="example-card">
-                    <img src="source/scene/04170_WebUAV3M_train_container_ship_11_5.gif" alt="Daytime" />
-                    <div class="card-content">
-                    <div class="card-title">Daytime</div>
-                    <div class="card-desc">The drone tracks a Maersk ship and a tugboat with slight gimbal adjustments to keep both in view.</div>
+                    <div class="example-card">
+                        <img src="source/scene/04170_WebUAV3M_train_container_ship_11_5.gif" alt="Daytime" />
+                        <div class="card-content">
+                            <div class="card-title">Daytime</div>
+                            <div class="card-desc">The drone tracks a Maersk ship and a tugboat with slight gimbal
+                                adjustments to keep both in view.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="example-card">
-                    <img src="source/scene/09048_WebUAV3M_train_snowmobile_29_1.gif" alt="Snowy" />
-                    <div class="card-content">
-                    <div class="card-title">Snowy</div>
-                    <div class="card-desc">The drone flies upward and backward while rotating left, tracking a snowmobile near a forest.</div>
+                    <div class="example-card">
+                        <img src="source/scene/09048_WebUAV3M_train_snowmobile_29_1.gif" alt="Snowy" />
+                        <div class="card-content">
+                            <div class="card-title">Snowy</div>
+                            <div class="card-desc">The drone flies upward and backward while rotating left, tracking a
+                                snowmobile near a forest.</div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
 
@@ -1360,107 +1446,159 @@
             <div class="dataset-category fade-in">
                 <h3>Task</h3>
                 <div class="example-grid">
-                <div class="example-card">
-                    <img src="source/task/00925_urbanvideo_test.gif" alt="Navigation" />
-                    <div class="card-content">
-                    <div class="card-title">Navigation</div>
-                    <div class="card-desc">The drone moves forward, turns right slightly, capturing commercial street view with buildings and pedestrians.</div>
+                    <div class="example-card">
+                        <img src="source/task/00925_urbanvideo_test.gif" alt="Navigation" />
+                        <div class="card-content">
+                            <div class="card-title">Navigation</div>
+                            <div class="card-desc">The drone moves forward, turns right slightly, capturing commercial
+                                street view with buildings and pedestrians.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="example-card">
-                    <img src="source/task/04689_WebUAV3M_train_gaily-painted_pleasure-boat_10_2.gif" alt="Tracking" />
-                    <div class="card-content">
-                    <div class="card-title">Tracking</div>
-                    <div class="card-desc">The drone follows a boat on a river, adjusting position to keep the boat centered in view.</div>
+                    <div class="example-card">
+                        <img src="source/task/04689_WebUAV3M_train_gaily-painted_pleasure-boat_10_2.gif"
+                            alt="Tracking" />
+                        <div class="card-content">
+                            <div class="card-title">Tracking</div>
+                            <div class="card-desc">The drone follows a boat on a river, adjusting position to keep the
+                                boat centered in view.</div>
+                        </div>
                     </div>
-                </div>
-                <div class="example-card">
-                    <img src="source/task/08079_WebUAV3M_train_sedan_67_1.gif" alt="Detection" />
-                    <div class="card-content">
-                    <div class="card-title">Detection</div>
-                    <div class="card-desc">The drone flies forward while detecting and observing traffic flow on the road.</div>
+                    <div class="example-card">
+                        <img src="source/task/08079_WebUAV3M_train_sedan_67_1.gif" alt="Detection" />
+                        <div class="card-content">
+                            <div class="card-title">Detection</div>
+                            <div class="card-desc">The drone flies forward while detecting and observing traffic flow on
+                                the road.</div>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
 
 
-        
+
         <h2 id="method" class="section-title text-center fade-in">Method</h2>
-            <div class="method-section">
-                <p class="fade-in">
-                    We propose a two-phase training framework to build an aerial world model capable of predicting future observations based on current egocentric views and natural language motion intentions. The model is trained to generate physically plausible future video sequences in 6DoF space, reflecting both semantic intention and spatio-temporal consistency.
-                </p>
-                <img src="source/method.png" alt="Method Overview" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+        <div class="method-section">
+            <p class="fade-in">
+                We propose a two-phase training framework to build an aerial world model capable of predicting future
+                observations based on current egocentric views and natural language motion intentions. The model is
+                trained to generate physically plausible future video sequences in 6DoF space, reflecting both semantic
+                intention and spatio-temporal consistency.
+            </p>
+            <img src="source/method.png" alt="Method Overview" class="fade-in"
+                style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
 
-                <h3 class="subsection-title fade-in">Phase 1: Learning Intention Controllability</h3>
-                <p class="fade-in">
-                    In the first phase, we perform supervised fine-tuning on a pre-trained video generation model using a dataset of paired aerial videos and their corresponding high-level textual motion intentions. This phase enables the model to understand and respond to concise, goal-oriented commands such as "The drone flies toward the blue building" as opposed to passive visual descriptions. By aligning the model's generative process with embodied control semantics, the foundation model begins to function as a predictive world model.
-                </p>
-                <p class="fade-in">
-                    Since aerial agents operate in 6DoF space involving translation, rotation, and gimbal changes, our dataset includes diverse scenarios to encourage robust intention understanding. The model learns to generate temporally coherent and spatially aligned video predictions based on the current visual input and a single-sentence motion command.
-                </p>
+            <h3 class="subsection-title fade-in">Phase 1: Learning Intention Controllability</h3>
+            <p class="fade-in">
+                In the first phase, we perform supervised fine-tuning on a pre-trained video generation model using a
+                dataset of paired aerial videos and their corresponding high-level textual motion intentions. This phase
+                enables the model to understand and respond to concise, goal-oriented commands such as "The drone flies
+                toward the blue building" as opposed to passive visual descriptions. By aligning the model's generative
+                process with embodied control semantics, the foundation model begins to function as a predictive world
+                model.
+            </p>
+            <p class="fade-in">
+                Since aerial agents operate in 6DoF space involving translation, rotation, and gimbal changes, our
+                dataset includes diverse scenarios to encourage robust intention understanding. The model learns to
+                generate temporally coherent and spatially aligned video predictions based on the current visual input
+                and a single-sentence motion command.
+            </p>
 
-                <h3 class="subsection-title fade-in">Phase 2: Learning Spatio-Temporal Constraints</h3>
-                <p class="fade-in">
-                    Despite initial fine-tuning, model outputs may still contain unrealistic or unstable predictions. To address this, we introduce a self-play strategy combined with large multimodal models (LMMs) to enforce physical consistency. This phase enhances the world model’s ability to generate high-fidelity video sequences by filtering synthetic generations through a rejection sampling mechanism.
-                </p>
-                <p class="fade-in">
-                    The process includes (a) sampling a current frame and generating a motion intention using LMMs, (b) producing candidate video predictions under that intention, and (c) evaluating them based on four criteria: intention alignment, spatial consistency, temporal continuity, and adherence to projective geometry. LMMs act as critics to select the most realistic prediction.
-                </p>
-                <p class="fade-in">
-                    Accepted video-intention pairs are collected into a synthetic dataset and used to further fine-tune the world model. This iterative loop improves the model’s capability to generate videos that not only match the intention but also obey real-world physical constraints, even in complex aerial scenes.
-                </p>
-            </div>
+            <h3 class="subsection-title fade-in">Phase 2: Learning Spatio-Temporal Constraints</h3>
+            <p class="fade-in">
+                Despite initial fine-tuning, model outputs may still contain unrealistic or unstable predictions. To
+                address this, we introduce a self-play strategy combined with large multimodal models (LMMs) to enforce
+                physical consistency. This phase enhances the world model’s ability to generate high-fidelity video
+                sequences by filtering synthetic generations through a rejection sampling mechanism.
+            </p>
+            <p class="fade-in">
+                The process includes (a) sampling a current frame and generating a motion intention using LMMs, (b)
+                producing candidate video predictions under that intention, and (c) evaluating them based on four
+                criteria: intention alignment, spatial consistency, temporal continuity, and adherence to projective
+                geometry. LMMs act as critics to select the most realistic prediction.
+            </p>
+            <p class="fade-in">
+                Accepted video-intention pairs are collected into a synthetic dataset and used to further fine-tune the
+                world model. This iterative loop improves the model’s capability to generate videos that not only match
+                the intention but also obey real-world physical constraints, even in complex aerial scenes.
+            </p>
+        </div>
 
-        
+
 
         <h2 id="experiment" class="section-title text-center fade-in">Experiment</h2>
-            <div class="experiment-section">
+        <div class="experiment-section">
 
-                <h3 class="subsection-title fade-in">Experimental Setup</h3>
-                <p class="fade-in">
-                    We split the proposed dataset into training and testing sets in a 9:1 ratio. In Phase 1, we fine-tune the video generation model <strong>CogVideoX-i2v-5B</strong> with key hyperparameters: resolution of 49×480×720 (frames×height×width), batch size of 2, gradient accumulation steps of 8, and total 10 training epochs on 8 NVIDIA A800-SXM4-40GB GPUs. For Phase 2, we use <strong>Gemini-2.0-Flash</strong> as the vision-language model (VLM) to support the self-play process, due to its strong video understanding capability and fast inference.
-                </p>
-                <p class="fade-in">
-                    Evaluation metrics focus on both visual quality (FID, FVD) and semantic consistency between generated future observations and motion intentions. We report performance under three 6DoF motion types: Translation, Rotation, and Compound, along with the averaged results across all tasks.
-                </p>
+            <h3 class="subsection-title fade-in">Experimental Setup</h3>
+            <p class="fade-in">
+                We split the proposed dataset into training and testing sets in a 9:1 ratio. In Phase 1, we fine-tune
+                the video generation model <strong>CogVideoX-i2v-5B</strong> with key hyperparameters: resolution of
+                49×480×720 (frames×height×width), batch size of 2, gradient accumulation steps of 8, and total 10
+                training epochs on 8 NVIDIA A800-SXM4-40GB GPUs. For Phase 2, we use <strong>Gemini-2.0-Flash</strong>
+                as the vision-language model (VLM) to support the self-play process, due to its strong video
+                understanding capability and fast inference.
+            </p>
+            <p class="fade-in">
+                Evaluation metrics focus on both visual quality (FID, FVD) and semantic consistency between generated
+                future observations and motion intentions. We report performance under three 6DoF motion types:
+                Translation, Rotation, and Compound, along with the averaged results across all tasks.
+            </p>
 
-                <h3 class="subsection-title fade-in">RQ1: How does AirScape perform compared to prior methods?</h3>
-                <p class="fade-in">
-                    Quantitative results in the table below show that <strong>AirScape outperforms all baseline methods</strong> across key metrics. Compared with state-of-the-art models like Cosmos-Predict1-7B and HunyuanVideo-I2V, AirScape achieves improvements of +14.91% in FID, +14.63% in FVD, and +165.64% in IAR. Especially under the <em>Rotation</em> setting, which emphasizes physical consistency, AirScape significantly surpasses other approaches.
-                </p>
-                <img src="source/tab.png" alt="Comparison Results" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+            <h3 class="subsection-title fade-in">RQ1: How does AirScape perform compared to prior methods?</h3>
+            <p class="fade-in">
+                Quantitative results in the table below show that <strong>AirScape outperforms all baseline
+                    methods</strong> across key metrics. Compared with state-of-the-art models like Cosmos-Predict1-7B
+                and HunyuanVideo-I2V, AirScape achieves improvements of +14.91% in FID, +14.63% in FVD, and +165.64% in
+                IAR. Especially under the <em>Rotation</em> setting, which emphasizes physical consistency, AirScape
+                significantly surpasses other approaches.
+            </p>
+            <img src="source/tab.png" alt="Comparison Results" class="fade-in"
+                style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
 
-                <h3 class="subsection-title fade-in">RQ2: Has AirScape Learned Spatio-Temporal Constraints?</h3>
-                <p class="fade-in">
-                    As shown in the case analysis below, AirScape produces physically plausible and intention-aligned video predictions, while baseline models often violate physical laws. For example, in cases of 6DoF motion, HunyuanVideo-I2V and Cosmos may generate distorted objects, unrealistic camera shifts, or discontinuous scenes. AirScape maintains stable depth, object continuity, and smooth transitions, indicating a robust understanding of spatio-temporal constraints learned via self-play.
-                </p>
-                <img src="source/case.png" alt="Case Analysis" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+            <h3 class="subsection-title fade-in">RQ2: Has AirScape Learned Spatio-Temporal Constraints?</h3>
+            <p class="fade-in">
+                As shown in the case analysis below, AirScape produces physically plausible and intention-aligned video
+                predictions, while baseline models often violate physical laws. For example, in cases of 6DoF motion,
+                HunyuanVideo-I2V and Cosmos may generate distorted objects, unrealistic camera shifts, or discontinuous
+                scenes. AirScape maintains stable depth, object continuity, and smooth transitions, indicating a robust
+                understanding of spatio-temporal constraints learned via self-play.
+            </p>
+            <img src="source/case.png" alt="Case Analysis" class="fade-in"
+                style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
 
-                <h3 class="subsection-title fade-in">RQ3: What are the effects of the self-play mechanism?</h3>
-                <p class="fade-in">
-                    The self-play pipeline is key to injecting physical constraints into the model. For each sampled input, multiple video candidates are generated via prompt variation and random seeding. The VLM (e.g., Gemini-2.0-Flash) evaluates and selects the candidate that best aligns with the intended motion while satisfying spatio-temporal coherence. This mechanism filters low-quality generations and improves learning stability during fine-tuning.
-                </p>
-                <img src="source/self_play.png" alt="Self-Play Mechanism" class="fade-in" style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
+            <h3 class="subsection-title fade-in">RQ3: What are the effects of the self-play mechanism?</h3>
+            <p class="fade-in">
+                The self-play pipeline is key to injecting physical constraints into the model. For each sampled input,
+                multiple video candidates are generated via prompt variation and random seeding. The VLM (e.g.,
+                Gemini-2.0-Flash) evaluates and selects the candidate that best aligns with the intended motion while
+                satisfying spatio-temporal coherence. This mechanism filters low-quality generations and improves
+                learning stability during fine-tuning.
+            </p>
+            <img src="source/self_play.png" alt="Self-Play Mechanism" class="fade-in"
+                style="width: 85%; max-width: 1084px; height: auto; object-fit: contain;">
 
-                <h3 class="subsection-title fade-in">RQ4: What insights can we draw from the ablation studies?</h3>
-                <p class="fade-in">
-                    We conduct ablation analysis on three aspects:
-                </p>
-                <p class="fade-in">
-                    <strong>1.Effectiveness of Phase 2 Training:</strong> Without Phase 2 self-play, the model trained only in Phase 1 fails to enforce physical realism, producing visually pleasing yet unrealistic outputs. The full AirScape framework achieves significant accuracy improvements on all metrics, especially in IAR.
-                </p>
-                <p class="fade-in">
-                    <strong>2.Role of VLM Critic:</strong> Replacing the Gemini-based critic with a simpler evaluator degrades the alignment and consistency of predictions, confirming the importance of a strong semantic and temporal understanding module in self-play evaluation.
-                </p>
-                <p class="fade-in">
-                    <strong>3.Effect of Prompt Diversity:</strong> Reducing the number of rollouts or removing prompt augmentation leads to lower IAR and higher FVD, showing that diversity during sampling helps cover more valid future outcomes.
-                </p>
-            </div>
+            <!-- <h3 class="subsection-title fade-in">RQ4: What insights can we draw from the ablation studies?</h3>
+            <p class="fade-in">
+                We conduct ablation analysis on three aspects:
+            </p>
+            <p class="fade-in">
+                <strong>1.Effectiveness of Phase 2 Training:</strong> Without Phase 2 self-play, the model trained only
+                in Phase 1 fails to enforce physical realism, producing visually pleasing yet unrealistic outputs. The
+                full AirScape framework achieves significant accuracy improvements on all metrics, especially in IAR.
+            </p>
+            <p class="fade-in">
+                <strong>2.Role of VLM Critic:</strong> Replacing the Gemini-based critic with a simpler evaluator
+                degrades the alignment and consistency of predictions, confirming the importance of a strong semantic
+                and temporal understanding module in self-play evaluation.
+            </p>
+            <p class="fade-in">
+                <strong>3.Effect of Prompt Diversity:</strong> Reducing the number of rollouts or removing prompt
+                augmentation leads to lower IAR and higher FVD, showing that diversity during sampling helps cover more
+                valid future outcomes.
+            </p> -->
+        </div>
 
-        
+
 
         <!-- <h2 id="conclusion" class="section-title text-center fade-in">Conclusion</h2>
         <p class="fade-in">
@@ -1471,197 +1609,198 @@
         </p> -->
 
 
-    <script>
-        // Theme toggle functionality
-        const themeToggle = document.querySelector('.theme-toggle');
-        const htmlElement = document.documentElement;
-        const themeIcon = document.querySelector('.theme-toggle i');
-        const themeIconFallback = document.querySelector('.theme-toggle .fallback-icon');
+        <script>
+            // Theme toggle functionality
+            const themeToggle = document.querySelector('.theme-toggle');
+            const htmlElement = document.documentElement;
+            const themeIcon = document.querySelector('.theme-toggle i');
+            const themeIconFallback = document.querySelector('.theme-toggle .fallback-icon');
 
-        // 检查Font Awesome是否加载成功
-        function checkFontAwesome() {
-            const spanFA = document.createElement('span');
-            spanFA.className = 'fa';
-            spanFA.style.display = 'none';
-            document.body.insertBefore(spanFA, document.body.firstChild);
+            // 检查Font Awesome是否加载成功
+            function checkFontAwesome() {
+                const spanFA = document.createElement('span');
+                spanFA.className = 'fa';
+                spanFA.style.display = 'none';
+                document.body.insertBefore(spanFA, document.body.firstChild);
 
-            const isFALoaded = window.getComputedStyle(spanFA).fontFamily.includes('FontAwesome');
-            document.body.removeChild(spanFA);
+                const isFALoaded = window.getComputedStyle(spanFA).fontFamily.includes('FontAwesome');
+                document.body.removeChild(spanFA);
 
-            if (!isFALoaded) {
-                // 如果Font Awesome未加载，显示备用图标
-                document.querySelectorAll('.fallback-icon').forEach(el => {
-                    el.style.display = 'inline';
-                });
-                document.querySelectorAll('.fas').forEach(el => {
-                    el.style.display = 'none';
-                });
+                if (!isFALoaded) {
+                    // 如果Font Awesome未加载，显示备用图标
+                    document.querySelectorAll('.fallback-icon').forEach(el => {
+                        el.style.display = 'inline';
+                    });
+                    document.querySelectorAll('.fas').forEach(el => {
+                        el.style.display = 'none';
+                    });
 
-                // 替换列表项的圆点图标
-                document.querySelectorAll('ul li .fas.fa-circle').forEach(el => {
-                    el.parentNode.innerHTML = '● ' + el.parentNode.innerHTML.replace(el.outerHTML, '');
-                });
+                    // 替换列表项的圆点图标
+                    document.querySelectorAll('ul li .fas.fa-circle').forEach(el => {
+                        el.parentNode.innerHTML = '● ' + el.parentNode.innerHTML.replace(el.outerHTML, '');
+                    });
+                }
             }
-        }
 
-        // 页面加载后检查Font Awesome
-        window.addEventListener('load', checkFontAwesome);
+            // 页面加载后检查Font Awesome
+            window.addEventListener('load', checkFontAwesome);
 
-        // Check for system preference or saved preference
-        if (localStorage.getItem('theme') === 'dark' ||
-            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            htmlElement.classList.add('dark');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-            themeIconFallback.textContent = '☀️';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
+            // Check for system preference or saved preference
+            if (localStorage.getItem('theme') === 'dark' ||
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                htmlElement.classList.add('dark');
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
                 themeIconFallback.textContent = '☀️';
-            } else {
-                localStorage.setItem('theme', 'light');
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                themeIconFallback.textContent = '🌙';
-            }
-        });
-
-        // Back to top functionality
-        const backToTopButton = document.querySelector('.back-to-top');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
             }
 
-            // 更新阅读进度条
-            updateReadingProgress();
-        });
+            themeToggle.addEventListener('click', () => {
+                htmlElement.classList.toggle('dark');
 
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+                if (htmlElement.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    themeIconFallback.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    themeIconFallback.textContent = '🌙';
+                }
             });
-        });
 
-        // 移动端菜单切换
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+            // Back to top functionality
+            const backToTopButton = document.querySelector('.back-to-top');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
 
-        // 平滑滚动到锚点
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+                // 更新阅读进度条
+                updateReadingProgress();
+            });
 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+            // 移动端菜单切换
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
 
-                    // 如果在移动端，点击后关闭菜单
-                    if (window.innerWidth <= 768) {
-                        navLinks.classList.remove('active');
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // 平滑滚动到锚点
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // 如果在移动端，点击后关闭菜单
+                        if (window.innerWidth <= 768) {
+                            navLinks.classList.remove('active');
+                        }
                     }
-                }
-            });
-        });
-
-        // 滚动动效
-        function checkVisibility() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            const staggerItems = document.querySelectorAll('.stagger-item');
-
-            fadeElements.forEach((element, index) => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
+                });
             });
 
-            staggerItems.forEach((element, index) => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
+            // 滚动动效
+            function checkVisibility() {
+                const fadeElements = document.querySelectorAll('.fade-in');
+                const staggerItems = document.querySelectorAll('.stagger-item');
 
-                if (elementTop < window.innerHeight - elementVisible) {
-                    setTimeout(() => {
+                fadeElements.forEach((element, index) => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+
+                    if (elementTop < window.innerHeight - elementVisible) {
                         element.classList.add('visible');
-                    }, 100 * (index % 5)); // 每5个元素一组，错开显示时间
-                }
-            });
-        }
+                    }
+                });
 
-        // 初始检查可见性
-        window.addEventListener('load', checkVisibility);
-        // 滚动时检查可见性
-        window.addEventListener('scroll', checkVisibility);
+                staggerItems.forEach((element, index) => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
 
-        // 确保所有text-center类的元素都居中显示
-        function enforceTextCenter() {
-            document.querySelectorAll('.text-center').forEach(el => {
-                el.style.textAlign = 'center';
-            });
-
-            document.querySelectorAll('.main-title, .section-title, h3.text-center').forEach(el => {
-                el.style.textAlign = 'center';
-            });
-        }
-
-        // 初始检查可见性和样式
-        window.addEventListener('load', function() {
-            checkVisibility();
-            checkFontAwesome();
-            enforceTextCenter();
-            updateReadingProgress();
-        });
-
-        // 阅读进度条功能
-        function updateReadingProgress() {
-            const progressBar = document.getElementById('reading-progress');
-            const totalHeight = document.body.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / totalHeight) * 100;
-            progressBar.style.width = `${progress}%`;
-
-            // 控制导航栏显示
-            const navbar = document.querySelector('.navbar');
-            const coverHeader = document.querySelector('.cover-header');
-            const coverHeight = coverHeader.offsetHeight;
-
-            if (window.scrollY > coverHeight - 100) {
-                navbar.classList.add('visible');
-            } else {
-                navbar.classList.remove('visible');
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        setTimeout(() => {
+                            element.classList.add('visible');
+                        }, 100 * (index % 5)); // 每5个元素一组，错开显示时间
+                    }
+                });
             }
-        }
 
-        // 监听滚动事件以更新进度条和导航栏显示
-        window.addEventListener('scroll', updateReadingProgress);
-    </script>
+            // 初始检查可见性
+            window.addEventListener('load', checkVisibility);
+            // 滚动时检查可见性
+            window.addEventListener('scroll', checkVisibility);
 
-    <!-- 引用部分 -->
-    <div class="content-container" style="margin-top: 2rem; border-radius: 1rem;">
-        <h2 id="citation" class="section-title text-center fade-in">Citation</h2>
-        <div class="citation-section">
-            <pre style="background-color: var(--bg-color); padding: 1.5rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+            // 确保所有text-center类的元素都居中显示
+            function enforceTextCenter() {
+                document.querySelectorAll('.text-center').forEach(el => {
+                    el.style.textAlign = 'center';
+                });
+
+                document.querySelectorAll('.main-title, .section-title, h3.text-center').forEach(el => {
+                    el.style.textAlign = 'center';
+                });
+            }
+
+            // 初始检查可见性和样式
+            window.addEventListener('load', function () {
+                checkVisibility();
+                checkFontAwesome();
+                enforceTextCenter();
+                updateReadingProgress();
+            });
+
+            // 阅读进度条功能
+            function updateReadingProgress() {
+                const progressBar = document.getElementById('reading-progress');
+                const totalHeight = document.body.scrollHeight - window.innerHeight;
+                const progress = (window.scrollY / totalHeight) * 100;
+                progressBar.style.width = `${progress}%`;
+
+                // 控制导航栏显示
+                const navbar = document.querySelector('.navbar');
+                const coverHeader = document.querySelector('.cover-header');
+                const coverHeight = coverHeader.offsetHeight;
+
+                if (window.scrollY > coverHeight - 100) {
+                    navbar.classList.add('visible');
+                } else {
+                    navbar.classList.remove('visible');
+                }
+            }
+
+            // 监听滚动事件以更新进度条和导航栏显示
+            window.addEventListener('scroll', updateReadingProgress);
+        </script>
+
+        <!-- 引用部分 -->
+        <div class="content-container" style="margin-top: 2rem; border-radius: 1rem;">
+            <h2 id="citation" class="section-title text-center fade-in">Citation</h2>
+            <div class="citation-section">
+                <pre
+                    style="background-color: var(--bg-color); padding: 1.5rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.9rem; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
 @misc{zhao2025embodiedr,
       title={Embodied-R: Collaborative Framework for Activating Embodied Spatial Reasoning in Foundation Models via Reinforcement Learning},
       author={Baining Zhao and Ziyou Wang and Jianjie Fang and Chen Gao and Fanhang Man and Jinqiang Cui and Xin Wang and Xinlei Chen and Yong Li and Wenwu Zhu},
@@ -1672,7 +1811,8 @@
       url={https://arxiv.org/abs/2504.12680},
 }
             </pre>
+            </div>
         </div>
-    </div>
 </body>
+
 </html>
